@@ -1,0 +1,7 @@
+{
+  "name": "SoundCloud",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
