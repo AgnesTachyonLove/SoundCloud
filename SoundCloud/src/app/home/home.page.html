@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Main
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,13 +9,20 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">MAIN</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <a [routerLink]="['/pageconfig']">IR A PAGE CONFIG</a>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <a [routerLink]="['/pageconfig']">IR A PAGE CONFIGURACION DE USUARIO</a>
+    <p>Aca se mostrará las canciones para reproducir a través de streaming
+      esta page tendrá una barra inferior que permitira al usuario poder:
+      -Skipear la cancion
+      -Mostrar la cancion que esta siendo reproducida una vez apretada la cancion
+      -Todo dependera de la conexion a internet, por ende, se utilizará la funcion nativa de Datos Móviles o Wi-Fi
+      También tendrá Un side menu en el que habrá
+      la imagen del usuario junto a su nombre y que al desplegarse se mostrara un icono de redireccionamiento a la pagina de configs
+      debajo del icono del usuario
+    </p>
   </div>
 </ion-content>

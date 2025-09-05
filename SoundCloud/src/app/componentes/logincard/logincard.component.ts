@@ -1,3 +1,4 @@
+import { AnimateTimings } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
@@ -25,7 +26,15 @@ export class LogincardComponent  implements OnInit {
     this.password = ''
   }
 
-  validaciones = () => {
+  validaciones = async () => {
+    const usernameInput = document.getElementById("username") as any
+    const passwordInput = document.getElementById("password") as any
+    const username = await usernameInput.getInputElement().then((inputEl: HTMLInputElement) => inputEl.value)
+    const password = await passwordInput.getInputElement().then((passwordEl: HTMLInputElement) => passwordEl.value)
+
+    this.usuario = username
+    this.password = password
+
     if(this.usuario  != 'User_1' || this.password != '123'){
       return { mensaje : this.error_messages.CODE_L1, estado: false }
     }
@@ -33,7 +42,7 @@ export class LogincardComponent  implements OnInit {
   }
 
   login = async () => {
-    const results = this.validaciones()
+    const results = await this.validaciones()
 
     if(!results.estado){
       await this.mostrarError(results.mensaje)
@@ -53,11 +62,10 @@ export class LogincardComponent  implements OnInit {
   } 
 
   loginExitoso = async(mensaje: string) => {
-    const toast = await this.toastCtrl.create({
+    const toast = await this.alertCtrl.create({
+      header: 'Login exitoso',
       message: mensaje,
-      duration:2000,
-      color:'success',
-      position:'top'
+      buttons: ['OK']
     });
     await toast.present();
   }
