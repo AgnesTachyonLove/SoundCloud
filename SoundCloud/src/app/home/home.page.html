@@ -1,28 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>
-      Main
+      SoundCloud
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">MAIN</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <a [routerLink]="['/pageconfig']">IR A PAGE CONFIGURACION DE USUARIO</a>
-    <p>Aca se mostrará las canciones para reproducir a través de streaming
-      esta page tendrá una barra inferior que permitira al usuario poder:
-      -Skipear la cancion
-      -Mostrar la cancion que esta siendo reproducida una vez apretada la cancion
-      -Todo dependera de la conexion a internet, por ende, se utilizará la funcion nativa de Datos Móviles o Wi-Fi
-      También tendrá Un side menu en el que habrá
-      la imagen del usuario junto a su nombre y que al desplegarse se mostrara un icono de redireccionamiento a la pagina de configs
-      debajo del icono del usuario
-    </p>
-  </div>
+<ion-content [fullscreen]="true" id="main-content">
+  <app-ionic-infinite-scroll></app-ionic-infinite-scroll>
 </ion-content>
+
+<!-- 👇 El menú lateral se monta aquí -->
+<app-sidemenu></app-sidemenu>

@@ -1,0 +1,8 @@
+Aca se mostrará las canciones para reproducir a través de streaming
+      esta page tendrá una barra inferior que permitira al usuario poder:
+      -Skipear la cancion
+      -Mostrar la cancion que esta siendo reproducida una vez apretada la cancion
+      -Todo dependera de la conexion a internet, por ende, se utilizará la funcion nativa de Datos Móviles o Wi-Fi
+      También tendrá Un side menu en el que habrá
+      la imagen del usuario junto a su nombre y que al desplegarse se mostrara un icono de redireccionamiento a la pagina de configs
+      debajo del icono del usuario
