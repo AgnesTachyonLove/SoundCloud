@@ -1,7 +1,9 @@
-import { AnimateTimings } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
+import { AlertController , ToastController } from '@ionic/angular';
+
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-logincard',
@@ -11,7 +13,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class LogincardComponent  implements OnInit {
 
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController) {}
+  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private router: Router) {}
 
   usuario = 'User_1'
   password = '123'
@@ -38,6 +40,7 @@ export class LogincardComponent  implements OnInit {
     if(this.usuario  != 'User_1' || this.password != '123'){
       return { mensaje : this.error_messages.CODE_L1, estado: false }
     }
+    localStorage.setItem('username', username);
     return { mensaje: 'Login exitoso', estado: true }
   }
 
@@ -48,7 +51,7 @@ export class LogincardComponent  implements OnInit {
       await this.mostrarError(results.mensaje)
     }
     else{
-      await this.loginExitoso(results.mensaje)
+      this.router.navigate(['/home']);
     }
   }
 
@@ -61,13 +64,5 @@ export class LogincardComponent  implements OnInit {
     await alert.present();
   } 
 
-  loginExitoso = async(mensaje: string) => {
-    const toast = await this.alertCtrl.create({
-      header: 'Login exitoso',
-      message: mensaje,
-      buttons: ['OK']
-    });
-    await toast.present();
-  }
 }
 

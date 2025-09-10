@@ -8,5 +8,8 @@ import { IonAvatar, IonChip, IonLabel } from '@ionic/angular/standalone';
     imports: [IonAvatar, IonChip, IonLabel],
 })
 export class AvatarComponent{
-
+  username: string | null = null;
+  ngOnInit(){
+    this.username = localStorage.getItem('username');
+  }
 }

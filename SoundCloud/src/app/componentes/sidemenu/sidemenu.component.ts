@@ -29,9 +29,12 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class SidemenuComponent{
-
+  username: string | null = null
   constructor() { }
-
-  ngOnInit() {}
-
+  logout = () =>{
+    localStorage.removeItem("username")
+  }
+  ngOnInit(){
+    this.username = localStorage.getItem("username")
+  }
 }
