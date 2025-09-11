@@ -1,0 +1,30 @@
+.ion-content-cover {
+  position: relative;
+  overflow: hidden;
+  --background: transparent;
+}
+
+.ion-content-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://live.staticflickr.com/5179/5506222889_5a6f7be384_k.jpg") no-repeat center center / cover;
+  filter: blur(8px);
+  transform: scale(1.1);
+  z-index: -1;
+  animation: fondoZoom 45s infinite alternate ease-in-out;
+}
+
+@keyframes fondoZoom {
+  0%   { transform: scale(1.8) translate(0px, 0px); }
+  10%  { transform: scale(1.72) translate(-8px, 5px); }
+  20%  { transform: scale(1.64) translate(12px, -6px); }
+  30%  { transform: scale(1.53) translate(-10px, 8px); }
+  40%  { transform: scale(1.45) translate(5px, -12px); }
+  50%  { transform: scale(1.38) translate(-6px, 10px); }
+  60%  { transform: scale(1.27) translate(8px, -5px); }
+  70%  { transform: scale(1.19) translate(-12px, 6px); }
+  80%  { transform: scale(1.26) translate(5px, -8px); }
+  90%  { transform: scale(1.38) translate(-4px, 12px); }
+  100% { transform: scale(1.4) translate(0px, 0px); }
+}
