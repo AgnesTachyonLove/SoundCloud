@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController , ToastController } from '@ionic/angular';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AlertController , ToastController, AnimationController } from '@ionic/angular';
 
 import { Router } from '@angular/router';
 
@@ -11,14 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./logincard.component.scss'],
   standalone: false,
 })
-export class LogincardComponent  implements OnInit {
+export class LogincardComponent  implements OnInit, AfterViewInit{
 
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private router: Router) {}
+  @ViewChild('loginBtn', { read: ElementRef }) loginBtn!: ElementRef;
+  private animacionError!: any;
+
+  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private router: Router, private animationCtrl: AnimationController) {}
 
   usuario = 'User_1'
   password = '123'
-
-
+  
   error_messages = {
     'CODE_L1': 'Usuario y/o contraseñas incorrectos',
   }
@@ -26,6 +28,21 @@ export class LogincardComponent  implements OnInit {
   ngOnInit() {
     this.usuario = ''
     this.password = ''
+  }
+  
+  ngAfterViewInit() {
+    // Creamos la animación una sola vez
+    this.animacionError = this.animationCtrl
+      .create()
+      .addElement(this.loginBtn.nativeElement)
+      .duration(500)
+      .keyframes([
+        { offset: 0, transform: 'translateX(0)' },
+        { offset: 0.25, transform: 'translateX(-8px)' },
+        { offset: 0.5, transform: 'translateX(8px)' },
+        { offset: 0.75, transform: 'translateX(-8px)' },
+        { offset: 1, transform: 'translateX(0)' },
+      ]);
   }
 
   validaciones = async () => {
@@ -48,6 +65,9 @@ export class LogincardComponent  implements OnInit {
     const results = await this.validaciones()
 
     if(!results.estado){
+      if (this.animacionError) {
+        this.animacionError.play();
+      }
       await this.mostrarError(results.mensaje)
     }
     else{
@@ -63,6 +83,7 @@ export class LogincardComponent  implements OnInit {
     });
     await alert.present();
   } 
+
 
 }
 
