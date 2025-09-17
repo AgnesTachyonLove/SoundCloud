@@ -11,6 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { AvatarComponent } from '../avatar/avatar.component';
 import { RouterModule } from '@angular/router'; 
+
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',

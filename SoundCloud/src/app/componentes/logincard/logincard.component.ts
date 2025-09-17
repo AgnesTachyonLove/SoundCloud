@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController , ToastController } from '@ionic/angular';
-
 import { Router } from '@angular/router';
-
+import { SharedServices } from 'src/app/servicios/shared.services';
 
 
 @Component({
@@ -13,7 +12,13 @@ import { Router } from '@angular/router';
 })
 export class LogincardComponent  implements OnInit {
 
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private router: Router) {}
+  constructor(
+    private alertCtrl: AlertController, 
+    private toastCtrl: ToastController, 
+    private router: Router,
+    private shared: SharedServices,
+
+  ) {}
 
   usuario = 'User_1'
   password = '123'
@@ -51,6 +56,7 @@ export class LogincardComponent  implements OnInit {
       await this.mostrarError(results.mensaje)
     }
     else{
+      this.mandar()
       this.router.navigate(['/home']);
     }
   }
@@ -64,5 +70,8 @@ export class LogincardComponent  implements OnInit {
     await alert.present();
   } 
 
+  mandar(){
+    this.shared.enviarDato(this.usuario)
+  }
 }
 
