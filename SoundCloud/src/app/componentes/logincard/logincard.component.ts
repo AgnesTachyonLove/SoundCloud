@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { AlertController , ToastController } from '@ionic/angular';
-=======
+
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController , ToastController, AnimationController } from '@ionic/angular';
 
->>>>>>> 61f27101fa15fdf3a80898a10156abf0dd182065
 import { Router } from '@angular/router';
 import { SharedServices } from 'src/app/servicios/shared.services';
 
@@ -18,20 +14,17 @@ import { SharedServices } from 'src/app/servicios/shared.services';
 })
 export class LogincardComponent  implements OnInit, AfterViewInit{
 
-<<<<<<< HEAD
   constructor(
     private alertCtrl: AlertController, 
     private toastCtrl: ToastController, 
     private router: Router,
     private shared: SharedServices,
-
+    private animationCtrl: AnimationController,
   ) {}
-=======
+
   @ViewChild('loginBtn', { read: ElementRef }) loginBtn!: ElementRef;
   private animacionError!: any;
 
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private router: Router, private animationCtrl: AnimationController) {}
->>>>>>> 61f27101fa15fdf3a80898a10156abf0dd182065
 
   usuario = 'User_1'
   password = '123'
@@ -100,12 +93,12 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
     await alert.present();
   } 
 
-<<<<<<< HEAD
+
   mandar(){
     this.shared.enviarDato(this.usuario)
   }
-=======
 
->>>>>>> 61f27101fa15fdf3a80898a10156abf0dd182065
+
+
 }
 

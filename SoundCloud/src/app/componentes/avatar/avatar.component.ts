@@ -19,7 +19,6 @@ export class AvatarComponent{
   ngOnInit(){
     this.shared.dato$.subscribe(username => {
       this.usuario = username
-      console.log(username)
     })
   }
 }
