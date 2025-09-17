@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { AlertController , ToastController } from '@ionic/angular';
+=======
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AlertController , ToastController, AnimationController } from '@ionic/angular';
+
+>>>>>>> 61f27101fa15fdf3a80898a10156abf0dd182065
 import { Router } from '@angular/router';
 import { SharedServices } from 'src/app/servicios/shared.services';
 
@@ -10,8 +16,9 @@ import { SharedServices } from 'src/app/servicios/shared.services';
   styleUrls: ['./logincard.component.scss'],
   standalone: false,
 })
-export class LogincardComponent  implements OnInit {
+export class LogincardComponent  implements OnInit, AfterViewInit{
 
+<<<<<<< HEAD
   constructor(
     private alertCtrl: AlertController, 
     private toastCtrl: ToastController, 
@@ -19,11 +26,16 @@ export class LogincardComponent  implements OnInit {
     private shared: SharedServices,
 
   ) {}
+=======
+  @ViewChild('loginBtn', { read: ElementRef }) loginBtn!: ElementRef;
+  private animacionError!: any;
+
+  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private router: Router, private animationCtrl: AnimationController) {}
+>>>>>>> 61f27101fa15fdf3a80898a10156abf0dd182065
 
   usuario = 'User_1'
   password = '123'
-
-
+  
   error_messages = {
     'CODE_L1': 'Usuario y/o contraseñas incorrectos',
   }
@@ -31,6 +43,21 @@ export class LogincardComponent  implements OnInit {
   ngOnInit() {
     this.usuario = ''
     this.password = ''
+  }
+  
+  ngAfterViewInit() {
+    // Creamos la animación una sola vez
+    this.animacionError = this.animationCtrl
+      .create()
+      .addElement(this.loginBtn.nativeElement)
+      .duration(500)
+      .keyframes([
+        { offset: 0, transform: 'translateX(0)' },
+        { offset: 0.25, transform: 'translateX(-8px)' },
+        { offset: 0.5, transform: 'translateX(8px)' },
+        { offset: 0.75, transform: 'translateX(-8px)' },
+        { offset: 1, transform: 'translateX(0)' },
+      ]);
   }
 
   validaciones = async () => {
@@ -53,6 +80,9 @@ export class LogincardComponent  implements OnInit {
     const results = await this.validaciones()
 
     if(!results.estado){
+      if (this.animacionError) {
+        this.animacionError.play();
+      }
       await this.mostrarError(results.mensaje)
     }
     else{
@@ -70,8 +100,12 @@ export class LogincardComponent  implements OnInit {
     await alert.present();
   } 
 
+<<<<<<< HEAD
   mandar(){
     this.shared.enviarDato(this.usuario)
   }
+=======
+
+>>>>>>> 61f27101fa15fdf3a80898a10156abf0dd182065
 }
 
