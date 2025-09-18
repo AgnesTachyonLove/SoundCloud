@@ -1,7 +1,7 @@
 
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController , ToastController, AnimationController } from '@ionic/angular';
-
+import { AuthServices } from 'src/app/servicios/auth-services';
 import { Router } from '@angular/router';
 import { SharedServices } from 'src/app/servicios/shared.services';
 
@@ -20,6 +20,7 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
     private router: Router,
     private shared: SharedServices,
     private animationCtrl: AnimationController,
+    private authServices: AuthServices,
   ) {}
 
   @ViewChild('loginBtn', { read: ElementRef }) loginBtn!: ElementRef;
@@ -65,7 +66,6 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
     if(this.usuario  != 'User_1' || this.password != '123'){
       return { mensaje : this.error_messages.CODE_L1, estado: false }
     }
-    localStorage.setItem('username', username);
     return { mensaje: 'Login exitoso', estado: true }
   }
 
@@ -79,6 +79,7 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
       await this.mostrarError(results.mensaje)
     }
     else{
+      this.authServices.login()
       this.mandar()
       this.router.navigate(['/home']);
     }
