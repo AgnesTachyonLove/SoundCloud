@@ -17,6 +17,7 @@ import { SidemenuComponent } from '../componentes/sidemenu/sidemenu.component';
     HomePageRoutingModule,
     IonicInfiniteScrollComponent,
     SidemenuComponent,
+
   ],
   declarations: [HomePage]
 })

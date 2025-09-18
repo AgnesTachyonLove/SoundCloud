@@ -11,7 +11,7 @@ import { PageloginPage } from './pagelogin.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PageloginPageRoutingModule
+    PageloginPageRoutingModule,
   ],
   declarations: [PageloginPage, LogincardComponent]
 })

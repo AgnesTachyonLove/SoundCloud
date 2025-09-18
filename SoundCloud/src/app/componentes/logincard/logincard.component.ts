@@ -1,9 +1,11 @@
 
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AlertController , ToastController, AnimationController } from '@ionic/angular';
+import { AlertController ,AnimationController } from '@ionic/angular';
 import { AuthServices } from 'src/app/servicios/auth-services';
 import { Router } from '@angular/router';
 import { SharedServices } from 'src/app/servicios/shared.services';
+import { ApiServices } from 'src/app/servicios/api-services';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -16,23 +18,17 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
 
   constructor(
     private alertCtrl: AlertController, 
-    private toastCtrl: ToastController, 
     private router: Router,
     private shared: SharedServices,
     private animationCtrl: AnimationController,
     private authServices: AuthServices,
+    private api: ApiServices
   ) {}
 
   @ViewChild('loginBtn', { read: ElementRef }) loginBtn!: ElementRef;
   private animacionError!: any;
-
-
-  usuario = 'User_1'
-  password = '123'
-  
-  error_messages = {
-    'CODE_L1': 'Usuario y/o contraseñas incorrectos',
-  }
+    usuario: string = ''
+    password: string = ''
 
   ngOnInit() {
     this.usuario = ''
@@ -54,36 +50,26 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
       ]);
   }
 
-  validaciones = async () => {
-    const usernameInput = document.getElementById("username") as any
-    const passwordInput = document.getElementById("password") as any
-    const username = await usernameInput.getInputElement().then((inputEl: HTMLInputElement) => inputEl.value)
-    const password = await passwordInput.getInputElement().then((passwordEl: HTMLInputElement) => passwordEl.value)
-
-    this.usuario = username
-    this.password = password
-
-    if(this.usuario  != 'User_1' || this.password != '123'){
-      return { mensaje : this.error_messages.CODE_L1, estado: false }
-    }
-    return { mensaje: 'Login exitoso', estado: true }
-  }
-
-  login = async () => {
-    const results = await this.validaciones()
-
-    if(!results.estado){
-      if (this.animacionError) {
-        this.animacionError.play();
+  validaciones = ()=> {
+    console.log(this.usuario + this.password)
+    this.api.responseUserData(this.usuario,this.password).subscribe(resp => {
+      if(resp.success){
+        this.mandar(resp.username)
+        this.authServices.login()
+        this.router.navigate(['/home'])
+        
+      }else{
+        this.animacionError.play()
+        this.mostrarError('Usuario Y/O contraseña incorrectos!')
       }
-      await this.mostrarError(results.mensaje)
-    }
-    else{
-      this.authServices.login()
-      this.mandar()
-      this.router.navigate(['/home']);
-    }
+
+    }, err => {
+      this.animationCtrl
+      this.animacionError.play()
+      this.mostrarError(err)
+    })
   }
+
 
   async mostrarError(mensaje: string) {
     const alert = await this.alertCtrl.create({
@@ -95,8 +81,8 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
   } 
 
 
-  mandar(){
-    this.shared.enviarDato(this.usuario)
+  mandar(username: string){
+    this.shared.enviarDato(username)
   }
 
 
