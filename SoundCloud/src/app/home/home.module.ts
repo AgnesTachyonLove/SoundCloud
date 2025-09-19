@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { AvatarComponent } from '../componentes/avatar/avatar.component';
 import { SidemenuComponent } from '../componentes/sidemenu/sidemenu.component';
+import { MusicplayerComponent } from '../componentes/musicplayer/musicplayer.component';
 
 //Se importan componentes que sean Standalonte: True
 @NgModule({
@@ -17,7 +18,7 @@ import { SidemenuComponent } from '../componentes/sidemenu/sidemenu.component';
     HomePageRoutingModule,
     IonicInfiniteScrollComponent,
     SidemenuComponent,
-
+    MusicplayerComponent,
   ],
   declarations: [HomePage]
 })

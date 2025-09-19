@@ -2,9 +2,12 @@
     @for (item of items; track item; let index = $index) {
     <ion-item>
       <ion-avatar slot="start">
-        <img [src]="'https://picsum.photos/80/80?random=' + index" alt="avatar" />
+        <img [src]=item.image_url id="song_icon"/>
       </ion-avatar>
-      <ion-label>{{ item }}</ion-label>
+      <ion-label>{{item.name}}</ion-label>
+      <ion-button fill="clear" (click)="songSelected(item.id)">
+        <img src="../../../assets/icon/caret-forward-circle-outline.svg" slot="end" id ="play_icon">
+      </ion-button>
     </ion-item>
     }
   </ion-list>

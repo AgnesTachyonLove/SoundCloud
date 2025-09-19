@@ -9,6 +9,14 @@ interface LoginResponse{
     password: string,
     error_message?: string,
 }
+export interface SongResponse
+{
+    id: number,
+    name: string,
+    url: string,
+    image_url: string,
+
+}
 
 @Injectable({providedIn:'root'})
 
@@ -21,5 +29,15 @@ export class ApiServices{
     responseUserData = (username: string, password:string):Observable<LoginResponse> => {
                             //tipo retorno   construccion de la solicitud
         return this.http.post<LoginResponse>(this.apiUrl, {username,password})     
+    }
+
+    getSongs = (): Observable <SongResponse []> => {
+        const apiUrl = 'http://localhost:8000/SC/songs/'
+        return this.http.get<SongResponse []>(apiUrl)
+    }
+
+    playSelectedSong = (id:number): Observable <Blob> => {
+        const apiUrl = 'http://localhost:8000/SC/streaming/' +  id
+        return this.http.get(apiUrl,{responseType: 'blob'})
     }
 }

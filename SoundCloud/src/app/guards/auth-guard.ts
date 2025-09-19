@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate{
         private auth_services: AuthServices,
         private router: Router
     ){}
-    //creacion de guard de ruta para la carga del home en el login
+
     canActivate = ():boolean => {
         if(this.auth_services.getStatus()){
             return true

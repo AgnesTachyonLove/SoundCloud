@@ -11,7 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { AvatarComponent } from '../avatar/avatar.component';
 import { RouterModule } from '@angular/router'; 
-
+import { AudioService } from 'src/app/servicios/audio-services';
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -31,9 +31,9 @@ import { RouterModule } from '@angular/router';
 })
 export class SidemenuComponent{
   username: string | null = null
-  constructor() { }
+  constructor(private audio: AudioService) {}
   logout = () =>{
-    localStorage.removeItem("username")
+    this.audio.stop()
   }
   ngOnInit(){
     this.username = localStorage.getItem("username")
