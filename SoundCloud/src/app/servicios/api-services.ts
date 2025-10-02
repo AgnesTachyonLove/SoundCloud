@@ -1,43 +1,71 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
-
-interface LoginResponse{
-    success: boolean,
-    username: string,
-    password: string,
-    error_message?: string,
-}
-export interface SongResponse
-{
-    id: number,
-    name: string,
-    url: string,
-    image_url: string,
-
+interface LoginResponse {
+  success: boolean;
+  username: string;
+  password: string;
+  error_message?: string;
 }
 
-@Injectable({providedIn:'root'})
+interface TokenResponse {
+  access: string;
+  refresh: string;
+}
 
-export class ApiServices{
-    private apiUrl= 'http://localhost:8000/SC/test'
-    constructor(
-        private http : HttpClient,
-    ) {}
-                        //parametros de la funcion        retorno de la funcion
-    responseUserData = (username: string, password:string):Observable<LoginResponse> => {
-                            //tipo retorno   construccion de la solicitud
-        return this.http.post<LoginResponse>(this.apiUrl, {username,password})     
-    }
+export interface SongResponse {
+  id: number;
+  name: string;
+  url: string;
+  image_url: string;
+}
 
-    getSongs = (): Observable <SongResponse []> => {
-        const apiUrl = 'http://localhost:8000/SC/songs/'
-        return this.http.get<SongResponse []>(apiUrl)
-    }
+@Injectable({ providedIn: 'root' })
+export class ApiServices {
+  private apiUrl = 'http://localhost:8000/SC';
 
-    playSelectedSong = (id:number): Observable <Blob> => {
-        const apiUrl = 'http://localhost:8000/SC/streaming/' +  id
-        return this.http.get(apiUrl,{responseType: 'blob'})
-    }
+  constructor(private http: HttpClient) {}
+
+  responseUserData(username: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/test`, { username, password });
+  }
+
+  getSongs(): Observable<SongResponse[]> {
+    return this.http.get<SongResponse[]>(`${this.apiUrl}/songs/`);
+  }
+
+  playSelectedSong(id: number): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/streaming/${id}`, { responseType: 'blob' });
+  }
+
+  // obtiene el token y lo guarda en localStorage
+  loginUser(username: string, password: string): Observable<TokenResponse> {
+    return this.http.post<TokenResponse>(`${this.apiUrl}/api/token/`, { username, password })
+      .pipe(
+        tap((tokens: TokenResponse) => this.setToken(tokens))
+      );
+  }
+
+  // guuardar tokens en localStorage
+  setToken(tokens: TokenResponse): void {
+    localStorage.setItem("access", tokens.access);
+    localStorage.setItem("refresh", tokens.refresh);
+  }
+
+  // obbtener access token (para ponerlo en headers)
+  getAccessToken(): string | null {
+    return localStorage.getItem("access");
+  }
+
+  // refresh token
+  getRefreshToken(): string | null {
+    return localStorage.getItem("refresh");
+  }
+
+  // borrar sesión
+  clearTokens(): void {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+  }
 }

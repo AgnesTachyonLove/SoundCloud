@@ -22,7 +22,7 @@ export class AvatarComponent{
   
   ngOnInit(){
     this.shared.dato$.subscribe(username => {
-      this.usuario = username
+      this.usuario = username;
     })
   }
 }

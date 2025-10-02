@@ -4,10 +4,16 @@ import { BehaviorSubject } from "rxjs";
 @Injectable({providedIn: 'root'})
 
 export class SharedServices{
-    private dato = new BehaviorSubject <string | null> (null);
-    dato$ = this.dato.asObservable()
+  private username =  new BehaviorSubject< string | null >(
+    localStorage.getItem('usuario')
+  )
+  
 
-    enviarDato(username:string){
-        this.dato.next(username)
-    }
+
+  dato$ = this.username.asObservable()
+
+  enviarDato = (username: string) =>{
+    this.username.next(username)
+    localStorage.setItem('usuario',username)
+  } 
 }

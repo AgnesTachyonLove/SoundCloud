@@ -10,8 +10,11 @@ import {
   IonIcon,
 } from '@ionic/angular/standalone';
 import { AvatarComponent } from '../avatar/avatar.component';
-import { RouterModule } from '@angular/router'; 
-import { AudioService } from 'src/app/servicios/audio-services';
+import { Router, RouterModule } from '@angular/router'; 
+import { AuthServices } from 'src/app/servicios/auth-services';
+import { ApiServices } from 'src/app/servicios/api-services';
+import { SharedServices } from 'src/app/servicios/shared.services';
+import { MenuController } from '@ionic/angular';
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -31,11 +34,12 @@ import { AudioService } from 'src/app/servicios/audio-services';
 })
 export class SidemenuComponent{
   username: string | null = null
-  constructor(private audio: AudioService) {}
-  logout = () =>{
-    this.audio.stop()
-  }
-  ngOnInit(){
-    this.username = localStorage.getItem("username")
+  constructor(private auth : AuthServices, private api: ApiServices, private router: Router, private menu: MenuController) {}
+  logout = async () => {
+    this.api.clearTokens()
+    this.auth.logout()
+
+    await this.menu.close()
+    this.router.navigate(['pagelogin/'])
   }
 }

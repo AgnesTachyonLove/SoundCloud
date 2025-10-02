@@ -51,22 +51,16 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
   }
 
   validaciones = ()=> {
-    console.log(this.usuario + this.password)
-    this.api.responseUserData(this.usuario,this.password).subscribe(resp => {
-      if(resp.success){
-        this.mandar(resp.username)
-        this.authServices.login()
-        this.router.navigate(['/home'])
-        
-      }else{
+    this.api.loginUser(this.usuario, this.password).subscribe({
+      next:() => {
+        this.mandar(this.usuario)
+        this.authServices.getStatus()
+        this.router.navigate(['home/'])
+      },
+      error: () =>{
         this.animacionError.play()
-        this.mostrarError('Usuario Y/O contraseña incorrectos!')
+        this.mostrarError('Error al iniciar sesion')
       }
-
-    }, err => {
-      this.animationCtrl
-      this.animacionError.play()
-      this.mostrarError(err)
     })
   }
 
