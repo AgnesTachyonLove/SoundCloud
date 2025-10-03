@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, map, of } from 'rxjs';
 
 interface LoginResponse {
   success: boolean;
@@ -26,10 +26,13 @@ export class ApiServices {
   private apiUrl = 'http://localhost:8000/SC';
 
   constructor(private http: HttpClient) {}
-
-  responseUserData(username: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/test`, { username, password });
-  }
+  /** 
+   * 
+   * 
+   * responseUserData(username: string, password: string): Observable<LoginResponse> {
+      return this.http.post<LoginResponse>(`${this.apiUrl}/login/`, { username, password });
+    }
+  */
 
   getSongs(): Observable<SongResponse[]> {
     return this.http.get<SongResponse[]>(`${this.apiUrl}/songs/`);
@@ -68,4 +71,21 @@ export class ApiServices {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
   }
+
+
+  //crear usuario
+  regUser(username: string, password: string): Observable<boolean> {
+      return this.http.post<any>(`${this.apiUrl}/register`, { username, password }).pipe(
+        map(resp => {
+          if (!resp.success) {
+            return false; 
+          }
+          return true; 
+        }),
+        (err => {
+          
+          return of(false); 
+        })
+      );
+    }
 }
