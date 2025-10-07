@@ -14,6 +14,12 @@ interface TokenResponse {
   refresh: string;
 }
 
+
+interface RegisterResponse {
+  response: boolean | null
+}
+
+
 export interface SongResponse {
   id: number;
   name: string;
@@ -74,18 +80,7 @@ export class ApiServices {
 
 
   //crear usuario
-  regUser(username: string, password: string): Observable<boolean> {
-      return this.http.post<any>(`${this.apiUrl}/register`, { username, password }).pipe(
-        map(resp => {
-          if (!resp.success) {
-            return false; 
-          }
-          return true; 
-        }),
-        (err => {
-          
-          return of(false); 
-        })
-      );
-    }
+  userRegister = (username: string, password: string): Observable<RegisterResponse> => {
+    return this.http.post<RegisterResponse>(`${this.apiUrl}/register/`, {username, password})
+  }
 }

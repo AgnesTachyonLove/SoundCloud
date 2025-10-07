@@ -22,16 +22,18 @@ export class RegistercardComponent  implements OnInit {
     this.password= ''
   }
 
-
-  registro = (): void => {
-    this.api.regUser(this.usuario , this.password).subscribe(result  => {
-      if(result){
-          this.router.navigate(['pagelogin/'])
-      }else{
-        this.mostrarError(`Error al crear tu cuenta`)
+  registro = ():void => {
+    this.api.userRegister(this.usuario,  this.password).subscribe({
+      next : () => {
+        this.router.navigate(['pagelogin/'])
+      },
+      error: () =>{
+        this.mostrarError('Error al registrar la cuenta')
       }
-  })
+    })
   }
+
+  
 
     async mostrarError(mensaje: string) {
     const alert = await this.alertCtrl.create({
