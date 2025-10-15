@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton, IonInput} from '@ionic/angular/standalone';
+import { IonCard, IonCardContent, IonCardSubtitle, IonCardTitle, IonButton, IonInput} from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { ApiServices } from 'src/app/servicios/api-services';
 import { AlertController } from '@ionic/angular';
@@ -9,7 +9,7 @@ import { AlertController } from '@ionic/angular';
   selector: 'app-registercard',
   templateUrl: './registercard.component.html',
   styleUrls: ['./registercard.component.scss'],
-  imports: [IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton, IonInput, FormsModule],
+  imports: [IonCard, IonCardContent, IonCardSubtitle, IonButton, IonInput, FormsModule],
 })
 export class RegistercardComponent  implements OnInit {
 

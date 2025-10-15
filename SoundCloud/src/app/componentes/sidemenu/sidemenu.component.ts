@@ -3,7 +3,6 @@ import {
   IonButton,
   IonButtons,
   IonContent,
-  IonHeader,
   IonMenu,
   IonTitle,
   IonToolbar,
@@ -24,11 +23,8 @@ import { MenuController } from '@ionic/angular';
     IonIcon,
     IonButton,
     IonButtons,
-    IonContent, 
-    IonHeader, 
+    IonContent,  
     IonMenu,
-    IonTitle, 
-    IonToolbar, 
     AvatarComponent
   ],
 })

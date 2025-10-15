@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {
   InfiniteScrollCustomEvent,
   IonAvatar,
-  IonContent,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonItem,
@@ -19,7 +18,6 @@ import { ApiServices } from 'src/app/servicios/api-services';
   standalone: true,
   imports: [
     IonAvatar, 
-    IonContent, 
     IonInfiniteScroll, 
     IonInfiniteScrollContent, 
     IonItem, 
