@@ -29,7 +29,7 @@ export interface SongResponse {
 
 @Injectable({ providedIn: 'root' })
 export class ApiServices {
-  private apiUrl = 'http://127.0.0.1:8000/SC';
+  private apiUrl = 'http://3.85.112.171:80/SC';
 
   constructor(private http: HttpClient) {}
   /** 
