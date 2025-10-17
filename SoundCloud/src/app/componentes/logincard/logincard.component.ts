@@ -80,6 +80,11 @@ export class LogincardComponent  implements OnInit, AfterViewInit{
   }
 
 
+  redirect = () =>{
+    this.router.navigate(["/pageregister"])
+  };
+
+
 
 }
 

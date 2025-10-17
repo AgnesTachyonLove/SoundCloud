@@ -8,7 +8,7 @@ const config: CapacitorConfig = {
     server: {
     androidScheme: 'http',  // Cambia a HTTP en lugar de HTTPS
     cleartext: true,  // Permite cleartext (HTTP)
-    allowNavigation: ["3.85.112.171"]
+    allowNavigation: ["107.20.197.243 "]
   },
     // Configuración específica para Android
   android: {
