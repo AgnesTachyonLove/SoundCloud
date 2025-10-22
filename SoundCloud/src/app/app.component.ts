@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-
+import { Router
+ } from '@angular/router';
+import { AuthServices } from './servicios/auth-services';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -7,5 +9,12 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private router : Router, private auth : AuthServices) {
+    this.checkSession();
+  }
+
+  checkSession = () => {
+    const loggedIn = this.auth.getStatus();
+    this.router.navigate([loggedIn ? '/home' : '/pagelogin']);
+  };
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonFooter, IonToolbar, IonTitle, IonAvatar, IonButton, IonRange,IonGrid, IonRow, IonCol, IonIcon } from '@ionic/angular/standalone';
+import { IonFooter, IonToolbar, IonAvatar, IonButton, IonRange, IonIcon } from '@ionic/angular/standalone';
 import { NgIf } from '@angular/common';
 import { SongServices } from 'src/app/servicios/song-services';
 import { ApiServices, SongResponse } from 'src/app/servicios/api-services';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./musicplayer.component.scss'],
   standalone: true,
   imports: [
-    IonFooter, IonToolbar, IonTitle, IonAvatar, IonButton, IonRange, NgIf, IonIcon
+    IonFooter, IonToolbar, IonAvatar, IonButton, IonRange, NgIf, IonIcon
   ]
 })
 export class MusicplayerComponent implements OnInit {

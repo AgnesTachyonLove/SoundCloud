@@ -29,7 +29,7 @@ export interface SongResponse {
 
 @Injectable({ providedIn: 'root' })
 export class ApiServices {
-  private apiUrl = 'http://107.20.197.243:80/SC';
+  private apiUrl = 'http://balanceador-1719586101.us-east-1.elb.amazonaws.com/SC';
 
   constructor(private http: HttpClient) {}
   /** 
@@ -83,4 +83,16 @@ export class ApiServices {
   userRegister = (username: string, password: string): Observable<RegisterResponse> => {
     return this.http.post<RegisterResponse>(`${this.apiUrl}/register/`, {username, password})
   }
+
+  //refrescar el token
+  refreshToken(): Observable<any> {
+    const refresh = this.getRefreshToken();
+    if(!refresh) return of(null);
+
+    return this.http.post<TokenResponse>(`${this.apiUrl}/api/token/refresh`, {refresh}).pipe(
+      tap((tokens : TokenResponse)=> {
+        this.setToken(tokens)
+      })
+    )
+  };
 }

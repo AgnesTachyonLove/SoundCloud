@@ -1,6 +1,6 @@
 {
 "server": {
   "cleartext": true,
-  "allowNavigation": ["107.20.197.243 "]
+  "allowNavigation": ["balanceador-1719586101.us-east-1.elb.amazonaws.com"]
 }
 }
