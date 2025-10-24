@@ -21,7 +21,13 @@ export class RegistercardComponent  implements OnInit {
     this.usuario = ''
     this.password= ''
   }
-
+  validaciones= ():void => {
+    if(this.password.length < 10){
+      this.mostrarError("La contraseña debe ser de 10 carácteres como mínimo.");
+    }else{
+      this.registro();
+    };
+  };
   registro = ():void => {
     this.api.userRegister(this.usuario,  this.password).subscribe({
       next : () => {

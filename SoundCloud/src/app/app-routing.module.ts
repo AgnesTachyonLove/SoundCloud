@@ -13,11 +13,6 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: 'pageconfig',
-    loadChildren: () => import('./pageconfig/pageconfig.module').then( m => m.PageconfigPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'pagelogin',
     loadChildren: () => import('./pagelogin/pagelogin.module').then( m => m.PageloginPageModule),
   },
