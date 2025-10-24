@@ -25,6 +25,7 @@ const routes: Routes = [
     path: 'pageregister',
     loadChildren: () => import('./pageregister/pageregister.module').then( m => m.PageregisterPageModule)
   },
+   
 
 ];
 

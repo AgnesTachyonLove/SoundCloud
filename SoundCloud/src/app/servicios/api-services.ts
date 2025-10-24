@@ -29,6 +29,7 @@ export interface SongResponse {
 
 @Injectable({ providedIn: 'root' })
 export class ApiServices {
+  //poner balanceador despues de las pruebas  balanceador-1719586101.us-east-1.elb.amazonaws.com
   private apiUrl = 'http://balanceador-1719586101.us-east-1.elb.amazonaws.com/SC';
 
   constructor(private http: HttpClient) {}
@@ -95,4 +96,15 @@ export class ApiServices {
       })
     )
   };
+
+
+  //descargar canción
+  download_song(song_id: number, options: any = {}): Observable<any> {
+    return this.http.get(`${this.apiUrl}/download/${song_id}`, {
+      responseType: 'blob',
+      observe: 'events',
+      reportProgress: true,
+      ...options
+    });
+  } 
 }

@@ -1,16 +1,25 @@
 <ion-list>
-    @for (item of items; track item; let index = $index) {
+  @for (item of items; track item; let index = $index) {
     <ion-item>
       <ion-avatar slot="start">
         <img [src]=item.image_url id="song_icon"/>
       </ion-avatar>
       <ion-label>{{item.name}}</ion-label>
+      <ion-button fill ="clear" (click)="downloadSong(item.id, item.name)">
+        <ion-icon name="cloud-download-outline"></ion-icon>
+      </ion-button>
       <ion-button fill="clear" (click)="songSelected(item.id)">
         <img src="../../../assets/icon/caret-forward-circle-outline.svg" slot="end" id ="play_icon">
       </ion-button>
     </ion-item>
-    }
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-progress-bar
+      *ngIf="isDownloading"
+      [value]="downloadProgress"
+      color="primary"
+      buffer="1.0">
+    </ion-progress-bar>
+  }
+</ion-list>
+<ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
 </ion-infinite-scroll>

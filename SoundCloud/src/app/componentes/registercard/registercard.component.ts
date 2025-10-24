@@ -35,7 +35,7 @@ export class RegistercardComponent  implements OnInit {
 
   
 
-    async mostrarError(mensaje: string) {
+  async mostrarError(mensaje: string) {
     const alert = await this.alertCtrl.create({
       header: 'Error',
       message: mensaje,
