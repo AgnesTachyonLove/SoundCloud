@@ -8,7 +8,7 @@ const config: CapacitorConfig = {
     server: {
     androidScheme: 'http',  // Cambia a HTTP en lugar de HTTPS
     cleartext: true,  // Permite cleartext (HTTP)
-    allowNavigation: ["balanceador-1719586101.us-east-1.elb.amazonaws.com"]
+    allowNavigation: ["balanceador-74654469.us-east-1.elb.amazonaws.com"]
   },
     // Configuración específica para Android
   android: {
