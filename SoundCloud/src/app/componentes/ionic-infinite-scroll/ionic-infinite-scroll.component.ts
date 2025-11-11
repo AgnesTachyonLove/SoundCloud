@@ -71,7 +71,6 @@ export class IonicInfiniteScrollComponent implements OnInit {
   }
 
   songSelected(song_id: number){
-    console.log('cancion: ' + song_id)
     this.songServices.setSong(song_id)
   }
 
@@ -90,10 +89,11 @@ downloadSong(song_id: number, song_name: string): void {
         const base64 = await this.blobToBase64(blob);
         const filename = `${song_name}.mp3`;
 
+
         await Filesystem.writeFile({
           path: filename,
           data: base64,
-          directory: Directory.Documents
+          directory: Directory.Music,
         });
 
         await Preferences.set({
