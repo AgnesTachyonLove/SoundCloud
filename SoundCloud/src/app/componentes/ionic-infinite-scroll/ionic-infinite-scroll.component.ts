@@ -119,12 +119,7 @@ downloadSong(song_id: number, song_name: string): void {
   });
 }
 
-
-
-*/
-
-
-  private blobToBase64(blob: Blob): Promise<string> {
+private blobToBase64(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
@@ -136,6 +131,9 @@ downloadSong(song_id: number, song_name: string): void {
       reader.readAsDataURL(blob);
     });
   }
+
+*/
+
 
   async mostrarError() {
     const alert = await this.alertCtrl.create({
