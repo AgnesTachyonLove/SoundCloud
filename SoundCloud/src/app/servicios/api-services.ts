@@ -98,8 +98,10 @@ export class ApiServices {
   };
 
 
-  //descargar canción
-  download_song(song_id: number, options: any = {}): Observable<any> {
+
+  
+  /**
+   *   download_song(song_id: number, options: any = {}): Observable<any> {
     return this.http.get(`${this.apiUrl}/download/${song_id}`, {
       responseType: 'blob',
       observe: 'events',
@@ -107,4 +109,5 @@ export class ApiServices {
       ...options
     });
   } 
+   */
 }

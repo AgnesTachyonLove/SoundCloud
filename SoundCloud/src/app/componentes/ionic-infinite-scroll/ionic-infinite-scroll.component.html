@@ -7,22 +7,11 @@
 
       <ion-label>{{ item.name }}</ion-label>
 
-      <ion-button fill="clear" (click)="downloadSong(item.id, item.name)"
-                  [disabled]="state(item.id)?.downloading">
-        <ion-icon name="cloud-download-outline"></ion-icon>
-      </ion-button>
-
       <ion-button fill="clear" (click)="songSelected(item.id)">
         <img src="../../../assets/icon/caret-forward-circle-outline.svg" slot="end" id="play_icon">
       </ion-button>
     </ion-item>
 
-    <ion-progress-bar
-      *ngIf="state(item.id)?.downloading"
-      [value]="state(item.id)?.progress ?? 0"
-      color="primary"
-      buffer="1.0">
-    </ion-progress-bar>
   }
 </ion-list>
 

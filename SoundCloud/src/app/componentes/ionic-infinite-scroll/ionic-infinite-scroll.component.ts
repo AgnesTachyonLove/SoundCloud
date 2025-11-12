@@ -74,6 +74,11 @@ export class IonicInfiniteScrollComponent implements OnInit {
     this.songServices.setSong(song_id)
   }
 
+
+
+
+/*
+
 downloadSong(song_id: number, song_name: string): void {
   this.isDownloading = true;
   this.downloadProgress = 0;
@@ -93,7 +98,8 @@ downloadSong(song_id: number, song_name: string): void {
         await Filesystem.writeFile({
           path: filename,
           data: base64,
-          directory: Directory.Music,
+          directory: Directory.Documents,
+          recursive: true
         });
 
         await Preferences.set({
@@ -112,6 +118,11 @@ downloadSong(song_id: number, song_name: string): void {
     }
   });
 }
+
+
+
+*/
+
 
   private blobToBase64(blob: Blob): Promise<string> {
     return new Promise((resolve, reject) => {
