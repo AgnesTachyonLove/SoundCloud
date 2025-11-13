@@ -36,10 +36,11 @@ export class MusicplayerComponent implements OnInit {
         if (song_id !== null) {
           this.api.getSongs().subscribe(songs => {
             this.currentSong = songs.find(s => s.id === song_id) || null;
+
             if (this.currentSong) {
-              this.api.playSelectedSong(song_id).subscribe(blob => {
-                const audioUrl = URL.createObjectURL(blob);
-                this.audioService.play(audioUrl);
+              this.api.playSelectedSong(song_id).subscribe(res => {
+                const audioUrl = res.streaming_url;  // url d3 la s3
+                this.audioService.play(audioUrl);    // psar string altiro
               });
             }
           });

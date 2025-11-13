@@ -15,6 +15,7 @@ interface TokenResponse {
 }
 
 
+
 interface RegisterResponse {
   response: boolean | null
 }
@@ -30,7 +31,7 @@ export interface SongResponse {
 @Injectable({ providedIn: 'root' })
 export class ApiServices {
   //poner balanceador despues de las pruebas  balanceador-1719586101.us-east-1.elb.amazonaws.com
-  private apiUrl = 'http://SoundStar-1491080196.us-east-1.elb.amazonaws.com/SC';
+  private apiUrl = 'http://ec2-34-201-43-44.compute-1.amazonaws.com/SC';
 
   constructor(private http: HttpClient) {}
   /** 
@@ -45,8 +46,8 @@ export class ApiServices {
     return this.http.get<SongResponse[]>(`${this.apiUrl}/songs/`);
   }
 
-  playSelectedSong(id: number): Observable<Blob> {
-    return this.http.get(`${this.apiUrl}/streaming/${id}`, { responseType: 'blob' });
+  playSelectedSong(id: number): Observable<{ streaming_url: string }> {
+    return this.http.get<{ streaming_url: string }>(`${this.apiUrl}/streaming/${id}`);
   }
 
   // obtiene el token y lo guarda en localStorage
