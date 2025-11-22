@@ -31,7 +31,7 @@ export interface SongResponse {
 @Injectable({ providedIn: 'root' })
 export class ApiServices {
   //poner balanceador despues de las pruebas  balanceador-1719586101.us-east-1.elb.amazonaws.com
-  private apiUrl = 'http://ec2-34-201-43-44.compute-1.amazonaws.com/SC';
+  private apiUrl = 'http://SoundStar-1491080196.us-east-1.elb.amazonaws.com/SC';
 
   constructor(private http: HttpClient) {}
   /** 

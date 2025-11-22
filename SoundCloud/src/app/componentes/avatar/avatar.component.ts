@@ -8,6 +8,7 @@ import { NgIf } from '@angular/common';
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
+  standalone: true,
   imports: [IonAvatar, IonChip, IonLabel, NgIf],
 })
 

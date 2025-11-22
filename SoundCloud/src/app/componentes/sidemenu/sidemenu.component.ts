@@ -27,6 +27,7 @@ import { MenuController } from '@ionic/angular';
     IonMenu,
     AvatarComponent
   ],
+  standalone: true,
 })
 export class SidemenuComponent{
   username: string | null = null

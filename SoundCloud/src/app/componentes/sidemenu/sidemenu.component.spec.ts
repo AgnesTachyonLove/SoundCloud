@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { SidemenuComponent } from './sidemenu.component';
+import { isStandalone } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SidemenuComponent', () => {
   let component: SidemenuComponent;
@@ -9,8 +11,7 @@ describe('SidemenuComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidemenuComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), SidemenuComponent, HttpClientTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SidemenuComponent);

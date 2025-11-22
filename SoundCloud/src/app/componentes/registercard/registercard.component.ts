@@ -6,6 +6,7 @@ import { ApiServices } from 'src/app/servicios/api-services';
 import { AlertController } from '@ionic/angular';
 
 @Component({
+  standalone:true,
   selector: 'app-registercard',
   templateUrl: './registercard.component.html',
   styleUrls: ['./registercard.component.scss'],
